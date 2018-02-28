@@ -1,0 +1,9 @@
+.form-state-colors {
+    color: blue;
+    &.is-invalid {
+        color: red;
+    }
+    &.is-disabled, &:disabled {
+        color: grey;
+    }
+}

@@ -9,7 +9,8 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: DOCS,
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -47,6 +48,9 @@ module.exports = {
                 }
             }
         ]
+    },
+    devServer: {
+        historyApiFallback: true,
     },
     plugins: [
         new ExtractTextPlugin({

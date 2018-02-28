@@ -1,3 +1,14 @@
+$breakpoints: (
+    "phone":        400px,
+    "phone-wide":   480px,
+    "phablet":      560px,
+    "tablet-small": 640px,
+    "tablet":       768px,
+    "tablet-wide":  1024px,
+    "desktop":      1248px,
+    "desktop-wide": 1440px
+);
+
 @mixin font-size($sizeValue: 1.6) {
     font-size: ($sizeValue * 10) + px;
     font-size: $sizeValue + rem;
@@ -14,34 +25,17 @@
     padding-top: $padding;
 }
 
-@mixin triangle($color, $direction, $size: 6px, $position: absolute, $round: false) {
-    @include pseudo($pos: $position);
-    width: 0;
+@mixin down-triangle ($color, $size) {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+    content: '';
     height: 0;
-    @if $round {
-        border-radius: 3px;
-    }
-    @if $direction == down {
-        border-left: $size solid transparent;
-        border-right: $size solid transparent;
-        border-top: $size solid $color;
-        margin-top: 0 - round( $size / 2.5 );
-    } @else if $direction == up {
-        border-left: $size solid transparent;
-        border-right: $size solid transparent;
-        border-bottom: $size solid $color;
-        margin-bottom: 0 - round( $size / 2.5 );
-    } @else if $direction == right {
-        border-top: $size solid transparent;
-        border-bottom: $size solid transparent;
-        border-left: $size solid $color;
-        margin-right: -$size;
-    } @else if  $direction == left {
-        border-top: $size solid transparent;
-        border-bottom: $size solid transparent;
-        border-right: $size solid $color;
-        margin-left: -$size;
-    }
+    left: 50%;
+    margin-left: -$size;
+    position: absolute;                    
+    top: 0;
+    width: 0;
 }
 
 @mixin input-placeholder {
@@ -52,16 +46,6 @@
     &::-webkit-input-placeholder { @content; }
 }
 
-$breakpoints: (
-    "phone":        400px,
-    "phone-wide":   480px,
-    "phablet":      560px,
-    "tablet-small": 640px,
-    "tablet":       768px,
-    "tablet-wide":  1024px,
-    "desktop":      1248px,
-    "desktop-wide": 1440px
-);
 @mixin mq($width, $type: min) {
     @if map_has_key($breakpoints, $width) {
         $width: map_get($breakpoints, $width);
@@ -95,6 +79,13 @@ $z-indexes: (
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
+}
+@mixin plain-button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
 }
 
 @mixin border-radius($radius) {
