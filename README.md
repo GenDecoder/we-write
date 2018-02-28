@@ -1,4 +1,4 @@
-# GNC COMPONENT
+# We Write
 
 Solves a very recurrent issue in a very straight forward way, some of the characteristics of it are:
 
