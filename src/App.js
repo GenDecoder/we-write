@@ -15,6 +15,7 @@ import store from './redux/store'
 // Containers
 import Home from './containers/home/Home'
 import Photos from './containers/photos/Photos'
+import Floating from './containers/floating/Floating.component'
 // Components
 import {
     TopBarLogo,
@@ -27,6 +28,13 @@ import {
 import {
     isMobile
 } from './procedures/dom'
+// Constants
+import {
+    sidenavObservable,
+    resizeObservable
+} from './procedures/observables'
+// i18n
+import T from 'i18n-react'
 // Constants
 const TOP_MENU_OPTIONS = [{
     text: 'Home',
@@ -42,10 +50,14 @@ const ROUTES = [{
     path: '/photos',
     component: Photos
 }];
+
+import test from './i18n/en.json'
+
 class App extends React.Component {
     constructor(props) {
         super(props);
         const me = this;
+        me.resizeSubscription = null;
         me.onMenuIconClick = me.onMenuIconClick.bind(me);
     }
 //  _______     _______ _   _ _____ ____  
@@ -55,7 +67,13 @@ class App extends React.Component {
 // |_____|  \_/  |_____|_| \_| |_| |____/ 
     onMenuIconClick = e => {
         const me = this;
-        console.log('click')
+        T.setTexts(test, {
+            notFound: 'Not Found!'
+        });
+        me.setState({
+            a: 1
+        })
+        sidenavObservable.next(true);
     }
 //  _   _  ___   ___  _  ______  
 // | | | |/ _ \ / _ \| |/ / ___| 
@@ -64,9 +82,13 @@ class App extends React.Component {
 // |_| |_|\___/ \___/|_|\_\____/ 
     componentDidMount () {
         const me = this;
+        me.resizeSubscription = resizeObservable.subscribe(
+            e => console.log('do something on resize complete')
+        );
     }
     componentWillUnmount () {
         const me = this;
+        me.resizeSubscription.unsubscribe();
     }
     render () {
         const me = this;
@@ -92,7 +114,8 @@ class App extends React.Component {
                 {[
                     me._header(),
                     me._main(),
-                    me._footer()
+                    me._footer(),
+                    <Floating key='floating'/>
                 ]}
             </div>
         );
@@ -110,19 +133,19 @@ class App extends React.Component {
                         path='/'
                         render={ TopBarLogo }
                     />
-                    This containts the logo, some actions (Profile, login button, language, settings)
+                    <T.span text='greetings.hello'/>
                     {
                         isMobile() && 
                             <IconMenu
                                 onClick={ me.onMenuIconClick }
                             />
-                    }                    
+                    }
                 </div>
                 
                 {
                     !isMobile() &&
                         me._top_menu()
-                }                
+                }
             </header>
         );
     }

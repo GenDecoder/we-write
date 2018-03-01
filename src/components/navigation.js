@@ -8,7 +8,6 @@ export const TopBarLogo = ({
       onClick={ e => history.push('/') }
     />
 );
-
 export const TopMenuItem = ({
     history,
     location,
@@ -24,4 +23,4 @@ export const TopMenuItem = ({
             { text }
         </div>
     );
-}
+};

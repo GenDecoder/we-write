@@ -48,8 +48,8 @@
     "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
-    "react": "^16.2.0",
-    "react-localize-redux": "^2.15.1",
+    "i18n-react": "^0.6.3",
+    "react": "^16.2.0",    
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",

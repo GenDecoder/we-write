@@ -6,7 +6,7 @@ header {
         height: 50px;
         padding: 0 1rem;
         .top-bar-logo {
-            background-image: url(https://unbounce-wpengine.netdna-ssl.com/wp-content/themes/unbounce2015/assets/img/unbounce-icon.svg);
+            background-image: url($image-logo);
             background-repeat: no-repeat;
             background-size: auto 32px;
             cursor: pointer;
@@ -27,7 +27,7 @@ header {
             cursor: pointer;
             height: inherit;
             line-height: 50px;
-            padding: 0 1rem;
+            padding: 0 1em;
             position: relative;
             text-transform: uppercase;
             &:hover {
@@ -37,7 +37,7 @@ header {
                 color: $color-secondary-a200;
                 font-weight: bold;
                 &:before {
-                    @include down-triangle($color-primary-700, 10px);
+                    @include down-triangle($color-primary-700, 0.625em);
                 }
             }
         }

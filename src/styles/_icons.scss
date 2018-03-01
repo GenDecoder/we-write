@@ -1,5 +1,6 @@
+// Bases
 .app-icon {
-    //@extend .form-state-colors;
+    cursor: default;
     &.x16 { @include icon(16px); }
     &.x18 { @include icon(18px); }
     &.x24 { @include icon(24px); }
@@ -9,7 +10,7 @@
     &.x64 { @include icon(64px); }
 }
 .app-icon-bordered {
-    //@extend .form-state-colors;
+    cursor: default;    
     &.x16 { @include icon-bordered(16px); }
     &.x18 { @include icon-bordered(18px); }
     &.x24 { @include icon-bordered(24px); }
@@ -26,7 +27,7 @@
 .app-icon-close-element {
     color: $color-white;
 }
-.app-icon-open-menu {
+.app-icon-toggle-menu {
     color: $color-white;
     cursor: pointer;        
 }

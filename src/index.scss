@@ -1,6 +1,8 @@
 @import './styles/variables';
+
 @import './styles/mixins/basic';
 @import './styles/mixins/icon';
+
 @import './styles/bases/state-colors';
 
 @import './styles/icons';
@@ -11,5 +13,5 @@
 body {
     margin: 0;
     font-size: 62.5%;
-    font-family: 'Open Sans', sans-serif;
+    font-family: $font-primary;
 }

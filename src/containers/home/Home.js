@@ -1,4 +1,6 @@
 import React from 'react'
+// i18n
+import T from 'i18n-react'
 
 class Home extends React.Component {
     render () {
@@ -8,9 +10,7 @@ class Home extends React.Component {
                     height: 1500
                 }}
             >
-                <h1>
-                    This is a home sample (Banner and more)
-                </h1>
+                <T.span text='greetings.hello'/>
             </div>
         );
     }
