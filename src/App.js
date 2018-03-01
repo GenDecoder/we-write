@@ -1,3 +1,4 @@
+// Bases
 import React from 'react'
 import {
     Provider
@@ -9,21 +10,24 @@ import {
     Route,
     Switch
 } from 'react-router-dom'
-
+// Redux
 import store from './redux/store'
-
+// Containers
 import Home from './containers/home/Home'
-import Photos from './containers/Photos/Photos'
-
+import Photos from './containers/photos/Photos'
+// Components
 import {
     TopBarLogo,
     TopMenuItem
 } from './components/navigation'
-
 import {
     IconMenu
 } from './components/icons'
-
+// Procedures
+import {
+    isMobile
+} from './procedures/dom'
+// Constants
 const TOP_MENU_OPTIONS = [{
     text: 'Home',
     path: '/home'
@@ -38,8 +42,32 @@ const ROUTES = [{
     path: '/photos',
     component: Photos
 }];
-
-export default class extends React.Component {   
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        const me = this;
+        me.onMenuIconClick = me.onMenuIconClick.bind(me);
+    }
+//  _______     _______ _   _ _____ ____  
+// | ____\ \   / / ____| \ | |_   _/ ___| 
+// |  _|  \ \ / /|  _| |  \| | | | \___ \ 
+// | |___  \ V / | |___| |\  | | |  ___) |
+// |_____|  \_/  |_____|_| \_| |_| |____/ 
+    onMenuIconClick = e => {
+        const me = this;
+        console.log('click')
+    }
+//  _   _  ___   ___  _  ______  
+// | | | |/ _ \ / _ \| |/ / ___| 
+// | |_| | | | | | | | ' /\___ \ 
+// |  _  | |_| | |_| | . \ ___) |
+// |_| |_|\___/ \___/|_|\_\____/ 
+    componentDidMount () {
+        const me = this;
+    }
+    componentWillUnmount () {
+        const me = this;
+    }
     render () {
         const me = this;
         return (
@@ -52,6 +80,11 @@ export default class extends React.Component {
             </Provider>
         );
     }
+//  ____   ___  __  __ 
+// |  _ \ / _ \|  \/  |
+// | | | | | | | |\/| |
+// | |_| | |_| | |  | |
+// |____/ \___/|_|  |_|
     _app = () => {
         const me = this;
         return (
@@ -78,29 +111,18 @@ export default class extends React.Component {
                         render={ TopBarLogo }
                     />
                     This containts the logo, some actions (Profile, login button, language, settings)
-                    <IconMenu/>                    
+                    {
+                        isMobile() && 
+                            <IconMenu
+                                onClick={ me.onMenuIconClick }
+                            />
+                    }                    
                 </div>
-
-                <div
-                    className='top-menu'
-                >
-                    { 
-                        TOP_MENU_OPTIONS.map( 
-                            (item, index) => (
-                                <Route
-                                    key={ item.path + '-' + index }
-                                    path='/'
-                                    render={ props => (
-                                        <TopMenuItem
-                                            { ...item }
-                                            { ...props }
-                                        />
-                                    ) }
-                                />
-                            )
-                        )
-                    }
-                </div>
+                
+                {
+                    !isMobile() &&
+                        me._top_menu()
+                }                
             </header>
         );
     }
@@ -142,4 +164,31 @@ export default class extends React.Component {
             </footer>
         );
     }
+    _top_menu = () => {
+        const me = this;
+        return (
+            <div
+                className='top-menu'
+            >
+                { 
+                    TOP_MENU_OPTIONS.map( 
+                        (item, index) => (
+                            <Route
+                                key={ item.path + '-' + index }
+                                path='/'
+                                render={ props => (
+                                    <TopMenuItem
+                                        { ...item }
+                                        { ...props }
+                                    />
+                                ) }
+                            />
+                        )
+                    )
+                }
+            </div>
+        );
+    }
 }
+
+export default App;

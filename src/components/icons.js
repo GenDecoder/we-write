@@ -1,6 +1,13 @@
 import React from 'react'
-
-export const IconMenu = props => <span
-    className='icon-bars app-icon open-menu x32' // icon name, base class, specification, size
-    { ...props }
-/>
+import {
+    Icon
+} from './bases'
+export const IconMenu = props => (
+    <Icon
+        iconName='icon-bars'
+        baseCls='app-icon-bordered rounded-full'
+        specificCls='app-icon-open-menu'
+        size='x36'
+        { ...props }
+    />
+);

@@ -1,59 +1,36 @@
-@mixin icon($size) {
-    width: $size;
-    height: $size;
-    font-size: $size;
-}
-
-@mixin bordered(
-    $size,
-    $borderWidth: 1px
-) {
-    $noBorderSize: $size - $borderWidth*2;
-    border: solid $borderWidth;
-    text-align: center;
-    width: $noBorderSize;
-    height: $noBorderSize;
-    font-size: $noBorderSize*0.67;
-    &::before { line-height: $size; }
-    &.rounded { 
-        &-full { border-radius: 50%; }
-        &-shy { border-radius: $noBorderSize*0.17; }
-        &-sharp { border-radius: $noBorderSize*0.34; }
-    }
-    &.no-edge-space { font-size: $noBorderSize; }
-    &.is-button {
-        padding: 0;
-        margin: 0;
-        outline: none;
-        width: $size;
-        height: $size;
-    }
-}
-
-
 .app-icon {
-    @extend .form-state-colors;
+    //@extend .form-state-colors;
     &.x16 { @include icon(16px); }
     &.x18 { @include icon(18px); }
     &.x24 { @include icon(24px); }
     &.x32 { @include icon(32px); }
+    &.x36 { @include icon(36px); }
+    &.x48 { @include icon(48px); }
     &.x64 { @include icon(64px); }
-
-    &.close-element { color: $color-white; }
-    &.open-menu { color: $color-white; padding: 10px; }
-    &.close-menu { color: $color-white; padding: 10px; }
 }
 .app-icon-bordered {
-    @extend .form-state-colors;
-    background-color: $color-white;
-    &.x16 { @include bordered(16px); }
-    &.x18 { @include bordered(18px); }
-    &.x24 { @include bordered(24px); }
-    &.x32 { @include bordered(32px); }
-    &.x64 { @include bordered(64px); }
+    //@extend .form-state-colors;
+    &.x16 { @include icon-bordered(16px); }
+    &.x18 { @include icon-bordered(18px); }
+    &.x24 { @include icon-bordered(24px); }
+    &.x32 { @include icon-bordered(32px); }
+    &.x36 { @include icon-bordered(36px); }
+    &.x48 { @include icon-bordered(48px); }
+    &.x64 { @include icon-bordered(64px); }
 }
+// Specifics
 .app-icon-spinner {    
     color: $color-white;
-    font-size: 40px;
     -webkit-animation: rotation 2s infinite linear;
+}
+.app-icon-close-element {
+    color: $color-white;
+}
+.app-icon-open-menu {
+    color: $color-white;
+    cursor: pointer;        
+}
+.app-icon-close-menu {
+    color: $color-white;
+    padding: 10px;
 }
