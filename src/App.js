@@ -51,12 +51,15 @@ const ROUTES = [{
     component: Photos
 }];
 
+import i18n from './i18n/I18n'
+
 import test from './i18n/en.json'
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         const me = this;
+        i18n.setTest(1234);
         me.resizeSubscription = null;
         me.onMenuIconClick = me.onMenuIconClick.bind(me);
     }
@@ -73,6 +76,7 @@ class App extends React.Component {
         me.setState({
             a: 1
         })
+        i18n.getTest();
         sidenavObservable.next(true);
     }
 //  _   _  ___   ___  _  ______  
