@@ -34,13 +34,15 @@ import {
     resizeObservable
 } from './procedures/observables'
 // i18n
-import T from 'i18n-react'
+import i18n from './i18n/I18n'
+import enUs from './i18n/enUs'
+i18n.setData(enUs);
 // Constants
 const TOP_MENU_OPTIONS = [{
-    text: 'Home',
+    text: i18n.getString('menu.home'),
     path: '/home'
 }, {
-    text: 'Photos',
+    text: i18n.getString('menu.photos'),
     path: '/photos'
 }];
 const ROUTES = [{
@@ -51,15 +53,11 @@ const ROUTES = [{
     component: Photos
 }];
 
-import i18n from './i18n/I18n'
-
-import test from './i18n/en.json'
-
 class App extends React.Component {
     constructor(props) {
         super(props);
         const me = this;
-        i18n.setTest(1234);
+        
         me.resizeSubscription = null;
         me.onMenuIconClick = me.onMenuIconClick.bind(me);
     }
@@ -70,13 +68,11 @@ class App extends React.Component {
 // |_____|  \_/  |_____|_| \_| |_| |____/ 
     onMenuIconClick = e => {
         const me = this;
-        T.setTexts(test, {
-            notFound: 'Not Found!'
-        });
+      
         me.setState({
             a: 1
         })
-        i18n.getTest();
+        
         sidenavObservable.next(true);
     }
 //  _   _  ___   ___  _  ______  
@@ -137,7 +133,6 @@ class App extends React.Component {
                         path='/'
                         render={ TopBarLogo }
                     />
-                    <T.span text='greetings.hello'/>
                     {
                         isMobile() && 
                             <IconMenu

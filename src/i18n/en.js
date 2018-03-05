@@ -1,5 +1,0 @@
-{
-  "greetings": {
-    "hello": "Hi Mario"
-  }
-}
