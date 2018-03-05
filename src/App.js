@@ -33,6 +33,10 @@ import {
     sidenavObservable,
     resizeObservable
 } from './procedures/observables'
+// Motion
+import {
+    Motion, spring
+} from 'react-motion'
 // i18n
 import i18n from './i18n/I18n'
 import enUs from './i18n/enUs'
@@ -57,7 +61,9 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         const me = this;
-        
+        me.state = {
+            sidenav: false
+        };
         me.resizeSubscription = null;
         me.onMenuIconClick = me.onMenuIconClick.bind(me);
     }
@@ -70,10 +76,11 @@ class App extends React.Component {
         const me = this;
       
         me.setState({
-            a: 1
+            // a: 1, // Simul language changed
+            sidenav: !me.state.sidenav
         })
         
-        sidenavObservable.next(true);
+        // sidenavObservable.next(true);
     }
 //  _   _  ___   ___  _  ______  
 // | | | |/ _ \ / _ \| |/ / ___| 
@@ -110,14 +117,33 @@ class App extends React.Component {
     _app = () => {
         const me = this;
         return (
-            <div>
-                {[
-                    me._header(),
-                    me._main(),
-                    me._footer(),
-                    <Floating key='floating'/>
-                ]}
-            </div>
+            <Motion
+                defaultStyle={{                
+                    x: 0
+                }} style={{
+                    x: spring(me.state.sidenav ? -1000 : 0)
+                }}
+            >
+                {
+                    ({ x }) => {
+                        return <div
+                            style={{
+                                WebkitTransform: `translate3d(${x}px, 0, 0)`,
+                                transform: `translate3d(${x}px, 0, 0)`,
+                            }}
+                        >
+                            {x}
+                            {[
+                                me._header(),
+                                me._main(),
+                                me._footer(),
+                                <Floating key='floating'/>
+                            ]}
+                        </div>
+                    }
+                }
+            </Motion>
+            
         );
     }
     _header = () => {
@@ -134,7 +160,7 @@ class App extends React.Component {
                         render={ TopBarLogo }
                     />
                     {
-                        isMobile() && 
+                        // isMobile() && 
                             <IconMenu
                                 onClick={ me.onMenuIconClick }
                             />

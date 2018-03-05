@@ -47,8 +47,9 @@
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   },
-  "dependencies": {    
-    "react": "^16.2.0",    
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-motion": "^0.5.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
