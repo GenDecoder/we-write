@@ -6,5 +6,5 @@ import {
 } from 'redux-form';
 
 export default combineReducers({
-    form // redux-form support
+    form
 });
